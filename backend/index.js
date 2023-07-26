@@ -1,5 +1,4 @@
 import { db } from "./config/Database.js";
-import session from "express-session";
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
