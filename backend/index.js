@@ -8,7 +8,6 @@ import route from "./router/route.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
-import helmet from 'helmet'
 import session from "cookie-session";
 import RedisStore from "connect-redis";
 import { createClient } from "redis";
@@ -44,21 +43,6 @@ const ALLOWED_DOMAINS =
     : [process.env.LOCAL_CLIENT_APP, process.env.LOCAL_SERVER_API];
 
 
-//setup helmet js
-app.use(helmet());
-app.use(helmet.hidePoweredBy());
-app.use(
-  helmet.hsts({
-    maxAge: sixtyDaysInSeconds,
-    includeSubDomains: false,
-  })
-);
-// setting "Referrer-Policy" to "no-referrer"
-app.use(
-  helmet.referrerPolicy({
-    policy: "Referrer-Policy",
-  })
-);
 
 app.use(
   cors({
