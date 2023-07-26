@@ -1,5 +1,5 @@
 import { db } from "../config/Database.js";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
 import nodemailer from "nodemailer";
 
