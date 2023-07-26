@@ -8,7 +8,7 @@ import route from "./router/route.js";
 import multer from "multer";
 import path from "path";
 import { fileURLToPath } from "url";
-import session from "cookie-session";
+import session from "express-session";
 import RedisStore from "connect-redis";
 import { createClient } from "redis";
 
@@ -53,6 +53,40 @@ app.use(
 
 app.set("trust proxy", 1); // trust first proxy
 app.disable("x-powered-by");
+
+
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+app.use(cookieParser()); // any string ex: 'keyboard cat'
+
+app.use(
+  session({
+    name: "session_id",
+    saveUninitialized: true,
+    resave: false,
+    secret: SESSION_SECRET, // Secret key,
+    cookie: {
+      path: "/",
+      httpOnly: true,
+      maxAge: 1 * 60 * 1000,
+      sameSite: "none",
+      secure: true,
+    },
+  })
+);
+
+// app middleware
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
+
+app.use(express.json());
 
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Origin", "https://raymobileci.com");
