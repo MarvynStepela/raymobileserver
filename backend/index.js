@@ -46,7 +46,6 @@ const ALLOWED_DOMAINS =
 
 //setup helmet js
 app.use(helmet());
-app.use(helmet.contentSecurityPolicy(csp));
 app.use(helmet.hidePoweredBy());
 app.use(
   helmet.hsts({
