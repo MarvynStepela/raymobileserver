@@ -125,8 +125,6 @@ if (process.env.NODE_ENV === "production") {
   sessionConfig.cookie.secure = true; // serve secure cookies
 }
 
-app.use(session(sessionConfig));
-
 
 // app middleware
 app.use(
